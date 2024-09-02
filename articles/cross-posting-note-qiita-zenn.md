@@ -1,6 +1,6 @@
 ---
 title: "クロス投稿(Note、Qiita、Zenn)のやり方"
-emoji: "🍀"
+emoji: "🔥"
 type: "tech"
 topics: ['クロス投稿', 'OASIS', 'Note', 'Qiita']
 published: False  # 公開設定を使用
@@ -10,9 +10,7 @@ IT関連の記事を中心に執筆しているので、複数のプラットフ
 
 ## OASISというツールについて
 
-OASISというクロス投稿ができるツールがありました。
-
-実際にOASISを使った手順を示します。
+OASISというクロス投稿ができるツールがありました。手順を示します。
 
 ## クロス投稿の手順
 
@@ -29,9 +27,11 @@ OASISというクロス投稿ができるツールがありました。
 pip install -U oasis-article
 ```
 
-### 2. 設定ファイルの作成
+### 2. 作業フォルダと設定ファイルの作成
 
-OASISの設定ファイル `.env` を作成します。このファイルには、各プラットフォームへの認証情報や設定を記載します。
+作業フォルダとしてユーザフォルダの下にoasisを作成しました。
+
+次にOASISの設定ファイル `.env` を作成します。作業フォルダではなくユーザフォルダの下に作成しました。このファイルには、各プラットフォームへの認証情報や設定を記載します。
 
 #### LLM設定
 
@@ -73,7 +73,9 @@ Zennに投稿するにはZennとGithubの連携をする必要があります。
 
 詳細は[親切なサイト](https://zenn.dev/youliangdao/articles/zenn-article-setup-local)に譲ります。
 
-OASISでは投稿用のmdファイルを生成します。そのmdファイルをGithubにpushしてZennに反映させます。
+※Zennに関してはoasisが投稿するのではなく投稿用のmdファイルが作成されます。そのmdファイルを手動でGithubにpushしてZennに反映させます。
+
+※Githubと連携するフォルダはc:\prj\の下をおすすめします。
 
 #### Firefox設定
 
@@ -86,17 +88,17 @@ FIREFOX_PROFILE_PATH="C:\Users\your_user_name\AppData\Roaming\Mozilla\Firefox\Pr
 
 ### 3. Markdown形式で記事の作成
 
-記事はMarkdown形式で記述する必要があります。慣れないうちはベタテキストで記事を書き、ChatGPTなどに校正がてらMarkdownに変換してもらっても良いと思います。(何度か記事を書いているうちによく使うタグは覚えます)
+記事はMarkdown形式で記述する必要があります。慣れないうちはベタテキストで書き、ChatGPTなどに校正がてらMarkdownに変換してもらっても良いと思います。(何度か記事を書いているうちによく使うタグは覚えます)
 
 ### 4. 投稿の実行
 
-準備が整ったら、WebUIを呼び出します。
+準備が整ったら、ユーザフォルダからoyasisを起動しWebUIを呼び出します。
 
 ```
 oasis -app
 ```
 
-![](/image/1.png)
+![](1.png)
 
 処理するフォルダのパスに投稿用mdファイルがあるパスを指定しました。
 
@@ -104,11 +106,11 @@ oasis -app
 
 Noteはこれで投稿できました。FirefoxをSeleniumでコントロールしているようなので投稿が終わるまで画面は触らないほうが良いです。
 
-ZennはC:\Prj\Zenn\articlesに投稿用mdファイルが生成される(--zenn-output-pathでアウトプットパスを指定しましたがWebUIでは有効ではないようです)のでZennと連携したGithubにpushすると反映されます。
+Zennの場合はC:\Prj\Zenn\articlesに投稿用mdファイルが生成される(--zenn-output-pathでアウトプットパスを指定しましたがWebUIでは有効ではないようです)のでZennと連携したGithubにpushすると反映されます。
 
-Qiitaは投稿完了の表示が出ても投稿されず、この原稿を書いている時点では解決できませんでした。後日、解析しようと思います。
+Qiitaは投稿完了の表示が出ても投稿されず、この原稿を書いている時点で問題を解決できませんでした。後日、解析しようと思います。
 
-また画像の貼り付けが反映されないため、手動で直しています。
+またNoteとZennで画像の貼り付けが反映されないため、手動で直しています。
 
 ## 追記：WordPressについて
 
